@@ -9,29 +9,32 @@ def searching_result(list_of_files, string):
             data = f.read()
             if string in data:
                 search_result.append(file)
-    return(search_result)
+    return search_result
+
 
 def print_searching_result(list_of_files):
     for file in list_of_files:
         print(file)
     n = len(list_of_files)
     if n % 10 == 1 and (n % 100 < 10 or n % 100 > 20) :
-        print('Всего:', n, 'файл')
+        print('Всего: {} файл'.format(n))
     elif 2 <= n % 10 <= 4 and (n % 100 < 10 or n % 100 > 20) :
-        print('Всего:', n, 'файла')
+        print('Всего: {} файлa'.format(n))
     else:
-        print('Всего:', n, 'файлов')
+        print('Всего: {} файлов'.format(n))
 
-def search(random_files):
-    search_string = str(input('Введите искомую строку (q - выход): '))
+
+def search(target_files):
+    search_string = input('Введите искомую строку (q - выход): ')
     if search_string != 'q':
-        print_searching_result(searching_result(random_files, search_string))
+        print_searching_result(searching_result(target_files, search_string))
         temp_files = []
-        for file in searching_result(random_files, search_string):
+        for file in searching_result(target_files, search_string):
             temp_files.append(file)
-        return(search(temp_files))
+        return search(temp_files)
     else:
         print('-GameOver-')
+
 
 migrations = 'Migrations'
 #migrations = 'Advanced Migrations'
